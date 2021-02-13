@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+  <link rel= "stylesheet" type= "text/css"  href="{{ url_for('static', filename='css/mainpage.css')}}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/11d294d693.js" crossorigin="anonymous"></script>
+  <title>News Search</title>
+</head>
+<header>
+  <center>
+    <form id="search_form" onsubmit="search()" method="GET">
+      <a id="home" href="/"><i class="fas fa-home"></i></a>
+      <input type="text" id="news_search" placeholder="Search Stories">
+    </form>
+  </center>
+</header>
+<body>
+    <h2 id="sub-title">{{sub_title}}</h2>
+    {% for article in range(length)%}
+      <div class="stories">
+        <p>
+          <a href="{{items[article]['link']}}"class="stories_title" >{{items[article]['title']}}</a>
+          <p style="text-align: right;">
+            <a href="{{items[article]['link']}}">
+              <img class="news_image" src="{{images[article]['img']}}">
+            </a>
+          </p>
+        </p>
+      </div>
+    {% endfor %}
+  <script>
+    function search(){
+      document.getElementById("search_form").action = "/" + document.getElementById("news_search").value
+    }
+  </script>
+</body>
+</html>
